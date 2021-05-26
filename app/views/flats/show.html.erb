@@ -1,5 +1,7 @@
+<img src="<%= @flat.image %>" alt="" height="300">
 <h1><%= @flat.name %></h1>
 <h3>Address: <%= @flat.address %></h3>
 <p>Guest Capacity: <%= @flat.number_of_guests %></p>
 <p>Price/Night: R$<%= @flat.price_per_night %></p>
 <p><%= @flat.description %></p>
+<%= link_to 'Go back', flats_path %>

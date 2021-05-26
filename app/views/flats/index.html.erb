@@ -1,21 +1,26 @@
-<h1>All our Flats</h1>
-<p>All <%= @flats.length %> flats</p>
-<div>
-<% @flats.each do |flat| %>
-  <div class="card">
-		<div class= "card-img">
-			<p>Imagem</p>
-		</div> 
-		<div class='card-info'>
-			<h3><%= flat.name %></h3>
-		<div>
-		<div class='card-links'>
-			<%= link_to 'More info', flat_path(flat) %>
-			<%= link_to 'Edit', edit_flat_path(flat) %>
-			<%= link_to "Remove", flat_path(flat), method: :delete, data: { confirm: "Are you sure?" } %>
-		</div>
-		
-	</div>
-<% end %>
+<div class="container">
+	<h1>All our Flats</h1>
+	<% if @word  %>
+		<p><%= @flats.length %> flats found filtered by: "<%= @word %>" | <%= link_to 'Remove filter', flats_path  %></p>
+	<% else %>
+		<p>All <%= @flats.length %> flats</p>
+	<% end %>
 
+	<div class="d-flex flex-wrap justify-content-start align-items-center ">
+		<% @flats.each do |flat| %>
+			<div class="card m-4">
+				<div class= "card-img">
+					<img src="<%= flat.image %>" alt="" width='250'>
+				</div> 
+				<div class='card-info'>
+					<h3><%= flat.name %></h3>
+				</div>
+				<div class='card-links'>
+					<%= link_to 'More info', flat_path(flat), class: 'btn btn-primary' %>
+					<%= link_to 'Edit', edit_flat_path(flat), class: 'btn btn-warning' %>
+					<%= link_to "Remove", flat_path(flat), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>

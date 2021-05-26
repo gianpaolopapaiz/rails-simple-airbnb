@@ -10,16 +10,18 @@
   </head>
 
   <body>
-    <nav>
-      <a href="../flats">Simple Airbnb</a>
-      <div class='nav-info'>
-        <%# <form action="">
-          <input type="text">
-          <input type="submit">
-        </form> %>
-        <a href="../flats/new">Add flat</a>
+    <nav class='d-flex justify-content-between p-3 bg-primary mb-3'>
+      <%= link_to 'Simple Airbnb', flats_path, class: 'text-white' %>
+      <div class='nav-info d-flex'>
+        <form action="../flats" method='get'>
+          <input type="text" name='word' placeholder='search...'>
+          <input type="submit" value="search">
+        </form> 
+        <%= link_to 'Add flat', new_flat_path, class: 'text-white px-3' %>
       </div>
     </nav>
-    <%= yield %>
+    <div class='content'>
+      <%= yield %>
+    </div>
   </body>
 </html>

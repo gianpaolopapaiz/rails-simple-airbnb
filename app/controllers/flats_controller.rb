@@ -1,9 +1,14 @@
 class FlatsController < ApplicationController
   def index
 		@flats = Flat.all
+		if params[:word] && params[:word] != ""
+			@word = params[:word]
+			@flats = Flat.where("name LIKE '%#{@word}%'")
+		end
 	end
 	def show
 		@flat = Flat.find(params[:id])
+
 	end
 	def new
 		@flat = Flat.new
@@ -36,7 +41,7 @@ class FlatsController < ApplicationController
 	private
 
 	def flat_params
-		params.require(:flat).permit(:name, :address, :description, :number_of_guests, :price_per_night)
+		params.require(:flat).permit(:name, :address, :description, :number_of_guests, :price_per_night, :image)
 	end
 	
 end
